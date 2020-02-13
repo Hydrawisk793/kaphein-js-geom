@@ -1,0 +1,29 @@
+{
+  "name": "kaphein-js-geom",
+  "version": "0.1.0",
+  "description": "A geometric toolkit for developing various software in JavaScript.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hydrawisk793/kaphein-js-geom.git"
+  },
+  "bundleDependencies": [],
+  "author": "Hydrawisk793 <hyw793@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hydrawisk793/kaphein-js-geom/issues"
+  },
+  "homepage": "https://github.com/Hydrawisk793/kaphein-js-geom#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "eslint": "^6.8.0"
+  },
+  "dependencies": {
+    "kaphein-js": "~0.1.1"
+  }
+}
