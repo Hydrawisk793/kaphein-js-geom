@@ -14,7 +14,7 @@ module.exports = (function ()
         output : {
             filename : "index.js",
             path : path.resolve(__dirname, outputDirectoryName),
-            library : "kapheinJs",
+            library : "kapheinJsGeom",
             libraryTarget : "umd"
         },
         optimization : {
