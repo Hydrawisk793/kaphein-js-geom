@@ -16,8 +16,8 @@ var Aabb2 = (function ()
         LEFT_TOP : 4,
         RIGHT_TOP : 5,
         LEFT_BOTTOM : 6,
-        RIGHT_BOTTOM : 7,
-    };
+        RIGHT_BOTTOM : 7
+    }
 
     /**
      *  @constructor
@@ -123,62 +123,62 @@ var Aabb2 = (function ()
     Aabb2.prototype = {
         constructor : Aabb2,
 
-        getLeft()
+        getLeft : function getLeft()
         {
             return this._min[0];
         },
 
-        getTop()
+        getTop : function getTop()
         {
             return this._min[1];
         },
 
-        getLeftTop()
+        getLeftTop : function getLeftTop()
         {
             return new Vector2(this._min);
         },
 
-        getMinimum()
+        getMinimum : function getMinimum()
         {
             return new Vector2(this._min);
         },
 
-        getRight()
+        getRight : function getRight()
         {
             return this._max[0];
         },
 
-        getBottom()
+        getBottom : function getBottom()
         {
             return this._max[1];
         },
 
-        getRightBottom()
+        getRightBottom : function getRightBottom()
         {
             return new Vector2(this._max);
         },
 
-        getMaximum()
+        getMaximum : function getMaximum()
         {
             return new Vector2(this._max);
         },
 
-        getCenter()
+        getCenter : function getCenter()
         {
             return this._min.add(this.getExtent());
         },
 
-        getExtent()
+        getExtent : function getExtent()
         {
             return this.getSize().scaleAssign(0.5);
         },
 
-        getLeftRight()
+        getLeftRight : function getLeftRight()
         {
             return this.getAxisRange(0);
         },
 
-        getTopBottom()
+        getTopBottom : function getTopBottom()
         {
             return this.getAxisRange(1);
         },
@@ -186,7 +186,7 @@ var Aabb2 = (function ()
         /**
          *  @param {number} index
          */
-        getAxisRange(index)
+        getAxisRange : function getAxisRange(index)
         {
             /** @type {Vector2} */var range = null;
 
@@ -204,7 +204,7 @@ var Aabb2 = (function ()
             return range;
         },
 
-        getExtremum(index)
+        getExtremum : function getExtremum(index)
         {
             /** @type {Vector2} */var range = null;
 
@@ -222,7 +222,7 @@ var Aabb2 = (function ()
             return range;
         },
 
-        getCorner(index)
+        getCorner : function getCorner(index)
         {
             /** @type {Vector2} */var corner = null;
 
@@ -246,17 +246,17 @@ var Aabb2 = (function ()
             return corner;
         },
 
-        getWidth()
+        getWidth : function getWidth()
         {
             return this.getSize()[0];
         },
 
-        getHeight()
+        getHeight : function getHeight()
         {
             return this.getSize()[1];
         },
 
-        getSize()
+        getSize : function getSize()
         {
             return this._max.subtract(this._min);
         },
@@ -264,7 +264,7 @@ var Aabb2 = (function ()
         /**
          *  @param {Direction} direction 
          */
-        getBorderRegion(direction)
+        getBorderRegion : function getBorderRegion(direction)
         {
             /** @type {Aabb2} */var region = null;
 
@@ -310,7 +310,7 @@ var Aabb2 = (function ()
             return region;
         },
 
-        equals(other)
+        equals : function equals(other)
         {
             return (
                 this === other
@@ -324,7 +324,7 @@ var Aabb2 = (function ()
             );
         },
 
-        intersectsWith(other)
+        intersectsWith : function intersectsWith(other)
         {
             return !(
                 !(other instanceof Aabb2)
@@ -337,7 +337,7 @@ var Aabb2 = (function ()
             );
         },
 
-        contains(other)
+        contains : function contains(other)
         {
             return !(
                 !(other instanceof Aabb2)
@@ -350,7 +350,7 @@ var Aabb2 = (function ()
             );
         },
 
-        getMinkowskiDifference(other)
+        getMinkowskiDifference : function getMinkowskiDifference(other)
         {
             var min = this.getMinimum().subtract(other.getMaximum());
 
@@ -363,7 +363,7 @@ var Aabb2 = (function ()
         /**
          *  @param {Vector2} direction
          */
-        getSupportingPoint(direction)
+        getSupportingPoint : function getSupportingPoint(direction)
         {
             return new Vector2(
                 (relativelyLessThan(direction[0], 0) ? this.getLeft() : this.getRight()),
@@ -371,7 +371,7 @@ var Aabb2 = (function ()
             );
         },
 
-        merge()
+        merge : function merge()
         {
             /**  @type {Aabb2[]} */var rects = Array.from(arguments);
 
@@ -404,7 +404,7 @@ var Aabb2 = (function ()
             );
         },
 
-        toPlainObject()
+        toPlainObject : function toPlainObject()
         {
             return {
                 center : this.getCenter(),
@@ -412,14 +412,14 @@ var Aabb2 = (function ()
                 left : this.getLeft(),
                 top : this.getTop(),
                 right : this.getRight(),
-                bottom : this.getBottom(),
+                bottom : this.getBottom()
             };
-        },
+        }
     };
 
     return Aabb2;
 })();
 
 module.exports = {
-    Aabb2 : Aabb2,
+    Aabb2 : Aabb2
 };
