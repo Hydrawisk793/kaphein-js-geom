@@ -82,7 +82,7 @@ var Vector3 = (function ()
 
         length : 3,
 
-        clone()
+        clone : function clone()
         {
             return new Vector3(this);
         },
@@ -92,7 +92,7 @@ var Vector3 = (function ()
          *  @param {number} y
          *  @param {number} z
          */
-        setXyz(x, y, z)
+        setXyz : function setXyz(x, y, z)
         {
             this[0] = x;
             this[1] = y;
@@ -101,7 +101,7 @@ var Vector3 = (function ()
             return this;
         },
 
-        negate()
+        negate : function negate()
         {
             return new Vector3(this).negateAssign();
         },
@@ -109,7 +109,7 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} other
          */
-        cross(other)
+        cross : function cross(other)
         {
             return new Vector3(
                 this[1] * other[2] - this[2] * other[1],
@@ -121,7 +121,7 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} other
          */
-        dot(other)
+        dot : function dot(other)
         {
             return this[0] * other[0]
                 + this[1] * other[1]
@@ -129,17 +129,17 @@ var Vector3 = (function ()
             ;
         },
 
-        norm2Squared()
+        norm2Squared : function norm2Squared()
         {
             return this.dot(this);
         },
 
-        norm2()
+        norm2 : function norm2()
         {
             return Math.sqrt(this.norm2Squared());
         },
 
-        normalize()
+        normalize : function normalize()
         {
             var norm2 = this.norm2();
 
@@ -149,7 +149,7 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} axis
          */
-        project(axis)
+        project : function project(axis)
         {
             /**  @type {Vector3} */var projected = null;
 
@@ -167,7 +167,7 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} other
          */
-        add(other)
+        add : function add(other)
         {
             return new Vector3(this).addAssign(other);
         },
@@ -175,7 +175,7 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} other
          */
-        subtract(other)
+        subtract : function subtract(other)
         {
             return new Vector3(this).subtractAssign(other);
         },
@@ -183,7 +183,7 @@ var Vector3 = (function ()
         /**
          *  @param {number} scalar
          */
-        scale(scalar)
+        scale : function scale(scalar)
         {
             return new Vector3(this).scaleAssign(scalar);
         },
@@ -191,17 +191,17 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} other
          */
-        pointwiseMultiply(other)
+        pointwiseMultiply : function pointwiseMultiply(other)
         {
             return new Vector3(this).pointwiseMultiplyAssign(other);
         },
 
-        isZero()
+        isZero : function isZero()
         {
             return relativelyEquals(0.0, this.norm2());
         },
 
-        equals(other)
+        equals : function equals(other)
         {
             var result = this === other;
             if(!result) {
@@ -218,7 +218,7 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} other
          */
-        assign(other)
+        assign : function assign(other)
         {
             this[0] = other[0];
             this[1] = other[1];
@@ -227,7 +227,7 @@ var Vector3 = (function ()
             return this;
         },
 
-        negateAssign()
+        negateAssign : function negateAssign()
         {
             this[0] = -this[0];
             this[1] = -this[1];
@@ -239,7 +239,7 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} other
          */
-        addAssign(other)
+        addAssign : function addAssign(other)
         {
             this[0] += other[0];
             this[1] += other[1];
@@ -251,7 +251,7 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} other
          */
-        subtractAssign(other)
+        subtractAssign : function subtractAssign(other)
         {
             this[0] -= other[0];
             this[1] -= other[1];
@@ -263,7 +263,7 @@ var Vector3 = (function ()
         /**
          *  @param {number} scalar
          */
-        scaleAssign(scalar)
+        scaleAssign : function scaleAssign(scalar)
         {
             this[0] *= scalar;
             this[1] *= scalar;
@@ -275,7 +275,7 @@ var Vector3 = (function ()
         /**
          *  @param {ArrayLike<number>} other
          */
-        pointwiseMultiplyAssign(other)
+        pointwiseMultiplyAssign : function pointwiseMultiplyAssign(other)
         {
             this[0] *= other[0];
             this[1] *= other[1];
@@ -284,20 +284,20 @@ var Vector3 = (function ()
             return this;
         },
 
-        toArray()
+        toArray : function toArray()
         {
             return Array.prototype.slice.call(this);
         },
 
-        toString()
+        toString : function toString()
         {
             return "[" + Array.prototype.join.call(this, ",") + "]";
         },
 
-        splice()
+        splice : function splice()
         {
             throw new Error("This function is just a dummy!");
-        },
+        }
     };
 
     function _isArrayLike(v)
@@ -314,5 +314,5 @@ var Vector3 = (function ()
 })();
 
 module.exports = {
-    Vector3 : Vector3,
+    Vector3 : Vector3
 };
