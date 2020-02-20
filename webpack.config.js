@@ -1,25 +1,29 @@
 var path = require("path");
 
 var CopyWebpackPlugin = require("copy-webpack-plugin");
-var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-var nodeExternals = require('webpack-node-externals');
+var nodeExternals = require("webpack-node-externals");
+var TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (function ()
 {
+    var srcPath = path.resolve(__dirname, "src");
     var outputDirectoryName = "dist";
 
     return {
-        entry : path.resolve(__dirname, "src", "index.js"),
+        entry : path.resolve(srcPath, "index.js"),
         target : "web",
         output : {
-            filename : "index.js",
+            filename : function (chunkData)
+            {
+                return chunkData.chunk.name === "main" ? "index.js": "[name].js";
+            },
             path : path.resolve(__dirname, outputDirectoryName),
-            library : "kapheinJsGeom",
+            library : "vcomJsClient",
             libraryTarget : "umd",
             globalObject: "this"
         },
         optimization : {
-            minimizer : [new UglifyJsPlugin()]
+            minimizer : [new TerserPlugin()]
         },
         plugins : [
             new CopyWebpackPlugin([

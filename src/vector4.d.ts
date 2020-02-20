@@ -1,4 +1,4 @@
-declare class Vector4 implements ArrayLike<number>
+export declare class Vector4 implements ArrayLike<number>
 {
     public static zero() : Vector4;
 
@@ -36,7 +36,7 @@ declare class Vector4 implements ArrayLike<number>
 
     public readonly length : number;
 
-    public readonly [ index : number ] : number;
+    readonly [ index : number ] : number;
 
     public clone() : Vector4;
 
@@ -114,7 +114,3 @@ declare class Vector4 implements ArrayLike<number>
      */
     public toString() : string;
 }
-
-export {
-    Vector4,
-};

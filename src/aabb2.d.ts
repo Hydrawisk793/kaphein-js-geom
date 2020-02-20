@@ -1,8 +1,8 @@
 import { Vector2 } from "./vector2";
 
-declare namespace Aabb2
+export declare namespace Aabb2
 {
-    const enum Direction
+    export enum Direction
     {
         LEFT = 0,
         RIGHT = 1,
@@ -15,7 +15,7 @@ declare namespace Aabb2
     }
 }
 
-declare class Aabb2
+export declare class Aabb2
 {
     public static fromMinimumAndMaximum(
         min : ArrayLike<number>,
@@ -117,7 +117,3 @@ declare class Aabb2
         extent : Vector2,
     };
 }
-
-export {
-    Aabb2,
-};

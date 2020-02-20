@@ -1,4 +1,4 @@
-export { Vector2 } from "./vector2";
-export { Vector3 } from "./vector3";
-export { Vector4 } from "./vector4";
-export { Aabb2 } from "./aabb2";
+export * from "./vector2";
+export * from "./vector3";
+export * from "./vector4";
+export * from "./aabb2";
