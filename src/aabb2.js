@@ -33,22 +33,12 @@ var Aabb2 = (function ()
             this._max = Vector2.zero();
         break;
         case 1:
-            if(arguments[0] instanceof Aabb2) {
-                this._min = new Vector2(arguments[0]._min);
-                this._max = new Vector2(arguments[0]._max);
-            }
-            else {
-                throw new TypeError("");
-            }
+            this._min = new Vector2(arguments[0]._min);
+            this._max = new Vector2(arguments[0]._max);
         break;
         case 2:
-            if(Vector2.isCompatibleArrayLike(arguments[0]) && Vector2.isCompatibleArrayLike(arguments[1])) {
-                this._min = new Vector2(arguments[0]);
-                this._max = new Vector2(arguments[1]);
-            }
-            else {
-                throw new TypeError("");
-            }
+            this._min = new Vector2(arguments[0]);
+            this._max = new Vector2(arguments[1]);
         break;
         default:
             throw new Error("");
@@ -105,10 +95,6 @@ var Aabb2 = (function ()
         // break;
         default:
             first = arguments[0];
-
-            if(!(first instanceof Aabb2)) {
-                throw new TypeError("");
-            }
 
             result = (
                 arguments.length < 2
@@ -315,11 +301,8 @@ var Aabb2 = (function ()
             return (
                 this === other
                 || (
-                    other instanceof Aabb2
-                    && (
-                        this._min.equals(other._min)
-                        && this._max.equals(other._max)
-                    )
+                    this._min.equals(other._min)
+                    && this._max.equals(other._max)
                 )
             );
         },
@@ -327,26 +310,20 @@ var Aabb2 = (function ()
         intersectsWith : function intersectsWith(other)
         {
             return !(
-                !(other instanceof Aabb2)
-                || (
-                    relativelyLessThan(this.getRight(), other.getLeft())
-                    || relativelyLessThan(other.getRight(), this.getLeft())
-                    || relativelyLessThan(this.getBottom(), other.getTop())
-                    || relativelyLessThan(other.getBottom(), this.getTop())
-                )
+                relativelyLessThan(this.getRight(), other.getLeft())
+                || relativelyLessThan(other.getRight(), this.getLeft())
+                || relativelyLessThan(this.getBottom(), other.getTop())
+                || relativelyLessThan(other.getBottom(), this.getTop())
             );
         },
 
         contains : function contains(other)
         {
             return !(
-                !(other instanceof Aabb2)
-                || (
-                    relativelyLessThan(other.getLeft(), this.getLeft())
-                    || relativelyLessThan(this.getRight(), other.getRight())
-                    || relativelyLessThan(other.getTop(), this.getTop())
-                    || relativelyLessThan(this.getBottom(), other.getBottom())
-                )
+                relativelyLessThan(other.getLeft(), this.getLeft())
+                || relativelyLessThan(this.getRight(), other.getRight())
+                || relativelyLessThan(other.getTop(), this.getTop())
+                || relativelyLessThan(this.getBottom(), other.getBottom())
             );
         },
 
@@ -382,19 +359,17 @@ var Aabb2 = (function ()
             for(var i = 0; i < rects.length; ++i) {
                 var rect = rects[i];
 
-                if(rect instanceof Aabb2) {
-                    if(left > rect.getLeft()) {
-                        left = rect.getLeft();
-                    }
-                    if(top > rect.getTop()) {
-                        top = rect.getTop();
-                    }
-                    if(right < rect.getRight()) {
-                        right = rect.getRight();
-                    }
-                    if(bottom < rect.getBottom()) {
-                        bottom = rect.getBottom();
-                    }
+                if(left > rect.getLeft()) {
+                    left = rect.getLeft();
+                }
+                if(top > rect.getTop()) {
+                    top = rect.getTop();
+                }
+                if(right < rect.getRight()) {
+                    right = rect.getRight();
+                }
+                if(bottom < rect.getBottom()) {
+                    bottom = rect.getBottom();
                 }
             }
 

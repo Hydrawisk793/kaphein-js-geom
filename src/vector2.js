@@ -19,7 +19,7 @@ var Vector2 = (function ()
         case 1:
             var src = arguments[0];
 
-            if(_isVectorLike(src)) {
+            if(_isArrayLike(src)) {
                 this[0] = src[0];
                 this[1] = src[1];
             }
@@ -64,7 +64,7 @@ var Vector2 = (function ()
 
     Vector2.isCompatibleArrayLike = function isCompatibleArrayLike(v)
     {
-        return _isVectorLike(v);
+        return _isArrayLike(v);
     };
 
     Vector2.prototype = {
@@ -180,7 +180,7 @@ var Vector2 = (function ()
         {
             var result = this === other;
             if(!result) {
-                result = _isVectorLike(other)
+                result = _isArrayLike(other)
                     && relativelyEquals(this[0], other[0])
                     && relativelyEquals(this[1], other[1])
                 ;
@@ -271,11 +271,6 @@ var Vector2 = (function ()
     function _isArrayLike(v)
     {
         return (isArrayLike(v) && v.length >= 2);
-    }
-
-    function _isVectorLike(v)
-    {
-        return (v instanceof Vector2) || _isArrayLike(v);
     }
 
     return Vector2;
