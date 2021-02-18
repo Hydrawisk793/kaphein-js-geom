@@ -1,8 +1,9 @@
-var isUndefinedOrNull = require("kaphein-js").isUndefinedOrNull;
-var isArrayLike = require("kaphein-js").isArrayLike;
-var relativelyEquals = require("kaphein-js").relativelyEquals;
+var kapheinJs = require("kaphein-js");
+var isUndefinedOrNull = kapheinJs.isUndefinedOrNull;
+var isArrayLike = kapheinJs.isArrayLike;
+var relativelyEquals = kapheinJs.relativelyEquals;
 
-var Vector2 = (function ()
+module.exports = (function ()
 {
     /**
      *  @constructor
@@ -13,32 +14,39 @@ var Vector2 = (function ()
         this[0] = 0;
         this[1] = 0;
 
-        switch(arguments.length) {
+        switch(arguments.length)
+        {
         case 0:
-        break;
+            break;
         case 1:
             var src = arguments[0];
 
-            if(_isArrayLike(src)) {
+            if(_isArrayLike(src))
+            {
                 this[0] = src[0];
                 this[1] = src[1];
             }
-            else if(!isUndefinedOrNull(src)) {
-                if("x" in src && "number" === typeof src.x) {
+            else if(!isUndefinedOrNull(src))
+            {
+                if("x" in src && "number" === typeof src.x)
+                {
                     this[0] = src.x;
                 }
 
-                if("y" in src && "number" === typeof src.y) {
+                if("y" in src && "number" === typeof src.y)
+                {
                     this[1] = src.y;
                 }
             }
-        break;
+            break;
         default:
-            if("number" === typeof arguments[0]) {
+            if("number" === typeof arguments[0])
+            {
                 this[0] = arguments[0];
             }
 
-            if("number" === typeof arguments[1]) {
+            if("number" === typeof arguments[1])
+            {
                 this[1] = arguments[1];
             }
         }
@@ -129,10 +137,12 @@ var Vector2 = (function ()
             /**  @type {Vector2} */var projected = null;
 
             var axisNorm2 = Vector2.prototype.norm2.call(axis);
-            if(relativelyEquals(0.0, axisNorm2)) {
+            if(relativelyEquals(0.0, axisNorm2))
+            {
                 projected = Vector2.zero();
             }
-            else {
+            else
+            {
                 projected = Vector2.prototype.scale.call(axis, this.dot(axis) / axisNorm2);
             }
 
@@ -179,7 +189,8 @@ var Vector2 = (function ()
         equals : function equals(other)
         {
             var result = this === other;
-            if(!result) {
+            if(!result)
+            {
                 result = _isArrayLike(other)
                     && relativelyEquals(this[0], other[0])
                     && relativelyEquals(this[1], other[1])
@@ -273,9 +284,7 @@ var Vector2 = (function ()
         return (isArrayLike(v) && v.length >= 2);
     }
 
-    return Vector2;
+    return {
+        Vector2 : Vector2
+    };
 })();
-
-module.exports = {
-    Vector2 : Vector2
-};

@@ -1,8 +1,9 @@
-var relativelyLessThan = require("kaphein-js").relativelyLessThan;
+var kapheinJs = require("kaphein-js");
+var relativelyLessThan = kapheinJs.relativelyLessThan;
 
 var Vector2 = require("./vector2").Vector2;
 
-var Aabb2 = (function ()
+module.exports = (function ()
 {
     /**
      *  @readonly
@@ -27,19 +28,20 @@ var Aabb2 = (function ()
         /** @type {Vector2} */this._min = null;
         /** @type {Vector2} */this._max = null;
 
-        switch(arguments.length) {
+        switch(arguments.length)
+        {
         case 0:
             this._min = Vector2.zero();
             this._max = Vector2.zero();
-        break;
+            break;
         case 1:
             this._min = new Vector2(arguments[0]._min);
             this._max = new Vector2(arguments[0]._max);
-        break;
+            break;
         case 2:
             this._min = new Vector2(arguments[0]);
             this._max = new Vector2(arguments[1]);
-        break;
+            break;
         default:
             throw new Error("");
         }
@@ -47,7 +49,8 @@ var Aabb2 = (function ()
         if(
             this._max[0] < this._min[0]
             || this._max[1] < this._min[1]
-        ) {
+        )
+        {
             throw new RangeError("'max' must be greater than or equal to 'min'.");
         }
     }
@@ -89,7 +92,8 @@ var Aabb2 = (function ()
         /** @type {Aabb2} */var result = null;
         /** @type {Aabb2} */var first = null;
 
-        switch(arguments.length) {
+        switch(arguments.length)
+        {
         case 0:
             throw new TypeError("");
         // break;
@@ -98,8 +102,8 @@ var Aabb2 = (function ()
 
             result = (
                 arguments.length < 2
-                ? first
-                : Aabb2.prototype.merge.apply(first, Array.prototype.slice.call(arguments, 1))
+                    ? first
+                    : Aabb2.prototype.merge.apply(first, Array.prototype.slice.call(arguments, 1))
             );
         }
 
@@ -176,13 +180,14 @@ var Aabb2 = (function ()
         {
             /** @type {Vector2} */var range = null;
 
-            switch(index) {
+            switch(index)
+            {
             case 0:
                 range = new Vector2(this._min[0], this._max[0]);
-            break;
+                break;
             case 1:
                 range = new Vector2(this._min[1], this._max[1]);
-            break;
+                break;
             default:
                 throw new RangeError("'index' must be in range [0, 1].");
             }
@@ -194,13 +199,14 @@ var Aabb2 = (function ()
         {
             /** @type {Vector2} */var range = null;
 
-            switch(index) {
+            switch(index)
+            {
             case 0:
                 range = this.getMinimum();
-            break;
+                break;
             case 1:
                 range = this.getMaximum();
-            break;
+                break;
             default:
                 throw new RangeError("'index' must be in range [0, 1].");
             }
@@ -212,19 +218,20 @@ var Aabb2 = (function ()
         {
             /** @type {Vector2} */var corner = null;
 
-            switch(index) {
+            switch(index)
+            {
             case 0:
                 corner = this.getMinimum();
-            break;
+                break;
             case 1:
                 corner = new Vector2(this._max[0], this._min[1]);
-            break;
+                break;
             case 2:
                 corner = new Vector2(this._min[0], this._max[1]);
-            break;
+                break;
             case 3:
                 corner = this.getMaximum();
-            break;
+                break;
             default:
                 throw new RangeError("'index' must be in range [0, 3].");
             }
@@ -257,31 +264,32 @@ var Aabb2 = (function ()
             var leftTop = this.getLeftTop();
             var size = this.getSize();
 
-            switch(direction) {
+            switch(direction)
+            {
             case Direction.LEFT:
                 region = Aabb2.fromMinimumAndSize(
                     leftTop.add(new Vector2(-1, 0)),
                     new Vector2(1, size[1])
                 );
-            break;
+                break;
             case Direction.RIGHT:
                 region = Aabb2.fromMinimumAndSize(
                     leftTop.add(new Vector2(size[0], 0)),
                     new Vector2(1, size[1])
                 );
-            break;
+                break;
             case Direction.TOP:
                 region = Aabb2.fromMinimumAndSize(
                     leftTop.add(new Vector2(0, -1)),
                     new Vector2(size[0], 1)
                 );
-            break;
+                break;
             case Direction.BOTTOM:
                 region = Aabb2.fromMinimumAndSize(
                     leftTop.add(new Vector2(0, size[1])),
                     new Vector2(size[0], 1)
                 );
-            break;
+                break;
             case Direction.LEFT_TOP:
             case Direction.RIGHT_TOP:
             case Direction.LEFT_BOTTOM:
@@ -356,19 +364,24 @@ var Aabb2 = (function ()
             var top = this.getTop();
             var right = this.getRight();
             var bottom = this.getBottom();
-            for(var i = 0; i < rects.length; ++i) {
+            for(var i = 0; i < rects.length; ++i)
+            {
                 var rect = rects[i];
 
-                if(left > rect.getLeft()) {
+                if(left > rect.getLeft())
+                {
                     left = rect.getLeft();
                 }
-                if(top > rect.getTop()) {
+                if(top > rect.getTop())
+                {
                     top = rect.getTop();
                 }
-                if(right < rect.getRight()) {
+                if(right < rect.getRight())
+                {
                     right = rect.getRight();
                 }
-                if(bottom < rect.getBottom()) {
+                if(bottom < rect.getBottom())
+                {
                     bottom = rect.getBottom();
                 }
             }
@@ -392,9 +405,7 @@ var Aabb2 = (function ()
         }
     };
 
-    return Aabb2;
+    return {
+        Aabb2 : Aabb2
+    };
 })();
-
-module.exports = {
-    Aabb2 : Aabb2
-};
