@@ -34,7 +34,7 @@ export declare class Vector3 implements ArrayLike<number>
 
     public readonly length : number;
 
-    readonly [ index : number ] : number;
+    [ index : number ] : number;
 
     public clone() : Vector3;
 

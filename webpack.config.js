@@ -2,7 +2,6 @@ var path = require("path");
 
 var CopyWebpackPlugin = require("copy-webpack-plugin");
 var nodeExternals = require("webpack-node-externals");
-var TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = (function ()
 {
@@ -15,24 +14,23 @@ module.exports = (function ()
         output : {
             filename : function (chunkData)
             {
-                return chunkData.chunk.name === "main" ? "index.js": "[name].js";
+                return chunkData.chunk.name === "main" ? "index.js" : "[name].js";
             },
             path : path.resolve(__dirname, outputDirectoryName),
             library : "vcomJsClient",
             libraryTarget : "umd",
-            globalObject: "this"
-        },
-        optimization : {
-            minimizer : [new TerserPlugin()]
+            globalObject : "this"
         },
         plugins : [
-            new CopyWebpackPlugin([
-                {
-                    context : "src",
-                    from : "**/*.d.ts",
-                    to : ""
-                }
-            ]),
+            new CopyWebpackPlugin({
+                patterns : [
+                    {
+                        context : "src",
+                        from : "**/*.d.ts",
+                        to : ""
+                    }
+                ]
+            }),
         ],
         module : {
 
