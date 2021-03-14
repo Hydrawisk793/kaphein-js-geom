@@ -1,12 +1,11 @@
-var path = require("path");
-
-var CopyWebpackPlugin = require("copy-webpack-plugin");
-var nodeExternals = require("webpack-node-externals");
+const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = (function ()
 {
-    var srcPath = path.resolve(__dirname, "src");
-    var outputDirectoryName = "dist";
+    const srcPath = path.resolve(__dirname, "src");
+    const outputDirectoryName = "dist";
 
     return {
         entry : path.resolve(srcPath, "index.js"),
