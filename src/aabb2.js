@@ -1,5 +1,5 @@
-var kapheinJs = require("kaphein-js");
-var relativelyLessThan = kapheinJs.relativelyLessThan;
+var kapheinJsMath = require("kaphein-js-math");
+var relativelyLessThan = kapheinJsMath.relativelyLessThan;
 
 var Vector2 = require("./vector2").Vector2;
 

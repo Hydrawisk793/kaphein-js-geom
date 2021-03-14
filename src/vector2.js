@@ -1,7 +1,8 @@
-var kapheinJs = require("kaphein-js");
-var isUndefinedOrNull = kapheinJs.isUndefinedOrNull;
-var isArrayLike = kapheinJs.isArrayLike;
-var relativelyEquals = kapheinJs.relativelyEquals;
+var kapheinJsTypeTrait = require("kaphein-js-type-trait");
+var isDefinedAndNotNull = kapheinJsTypeTrait.isDefinedAndNotNull;
+var isArrayLike = kapheinJsTypeTrait.isArrayLike;
+var kapheinJsMath = require("kaphein-js-math");
+var relativelyEquals = kapheinJsMath.relativelyEquals;
 
 module.exports = (function ()
 {
@@ -26,7 +27,7 @@ module.exports = (function ()
                 this[0] = src[0];
                 this[1] = src[1];
             }
-            else if(!isUndefinedOrNull(src))
+            else if(isDefinedAndNotNull(src))
             {
                 if("x" in src && "number" === typeof src.x)
                 {

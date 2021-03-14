@@ -2,30 +2,32 @@
     "name": "kaphein-js-geom",
     "version": "0.1.5",
     "description": "A geometric toolkit for developing various software in JavaScript.",
+    "author": "Hydrawisk793 <hyw793@gmail.com>",
+    "license": "MIT",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
         "dist"
     ],
+    "keywords": [],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Hydrawisk793/kaphein-js-geom.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Hydrawisk793/kaphein-js-geom/issues"
+    },
+    "homepage": "https://github.com/Hydrawisk793/kaphein-js-geom#readme",
     "scripts": {
         "lint": "tsc --project tsconfig.dts.json && eslint src/**/*.js",
         "lint:fix": "npm run lint -- --fix",
         "build": "rm -rf dist && npm run lint && webpack --mode production",
         "prepack": "npm install && npm run build"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Hydrawisk793/kaphein-js-geom.git"
-    },
-    "author": "Hydrawisk793 <hyw793@gmail.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Hydrawisk793/kaphein-js-geom/issues"
-    },
-    "homepage": "https://github.com/Hydrawisk793/kaphein-js-geom#readme",
     "bundleDependencies": [],
     "dependencies": {
-        "kaphein-js": "~0.14.3"
+        "kaphein-js-math": "~0.2.0",
+        "kaphein-js-type-trait": "~0.1.1"
     },
     "devDependencies": {
         "copy-webpack-plugin": "^6.4.1",
