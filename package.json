@@ -1,6 +1,6 @@
 {
     "name": "kaphein-js-geom",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "description": "A geometric toolkit for developing various software in JavaScript.",
     "author": "Hydrawisk793 <hyw793@gmail.com>",
     "license": "MIT",
